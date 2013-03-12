@@ -10,26 +10,26 @@ import org.junit.Test;
 
 import com.google.common.io.Files;
 
-public class UnZipTest {
+public class UnTARerTest {
 
-	private String zipFile;
+	private String tarFile;
 	private String tempDir;
 
 	@Before
 	public void setup() throws IOException {
-		File src = new File("src/test/java/foo/bar/baz/foo.zip");
+		File src = new File("src/test/java/foo/bar/baz/foo.tar");
 
 		tempDir = Files.createTempDir().getAbsolutePath();
-		File destination = new File(tempDir + "/" + "foo.zip");
-		zipFile = destination.getAbsolutePath();
+		File destination = new File(tempDir + "/" + "foo.tar");
+		tarFile = destination.getAbsolutePath();
 
 		Files.copy(src, destination);
 	}
 
 	@Test
-	public void shouldUnzipFiles() throws IOException {
-		UnZipper unZipper = new UnZipper();
-		unZipper.unzip(zipFile, tempDir);
+	public void shouldUnTARFile() throws IOException {
+		UnTARer unTARer = new UnTARer();
+		unTARer.unTAR(tarFile, tempDir);
 
 		assertTrue(new File(tempDir + "/" + "a.out").exists());
 		assertTrue(new File(tempDir + "/" + "b.out").exists());
